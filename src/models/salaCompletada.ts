@@ -1,4 +1,5 @@
 export class SalaCompletada{
+    usuario:string;
     inicioRun:string;
     nivel:number;
     dificultad:number;

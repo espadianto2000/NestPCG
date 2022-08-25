@@ -1,4 +1,5 @@
 export class NivelCompletado{
+    usuario:string;
     inicioRun:string;
     nivel:number;
     dificultad:number;

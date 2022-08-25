@@ -1,4 +1,5 @@
 export class MuerteUsuario{
+    usuario:string;
     inicioRun:string;
     nivel:number;
     dificultad:number;
