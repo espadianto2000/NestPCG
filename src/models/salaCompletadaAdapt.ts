@@ -1,4 +1,4 @@
-export class SalaCompletada{
+export class SalaCompletadaAdapt{
     usuario:string;
     inicioRun:string;
     nivel:number;

@@ -1,4 +1,4 @@
-export class NivelCompletado{
+export class NivelCompletadoAdapt{
     usuario:string;
     inicioRun:string;
     nivel:number;

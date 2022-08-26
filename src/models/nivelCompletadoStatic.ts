@@ -1,8 +1,8 @@
-export class MuerteUsuario{
+export class nivelCompletadoStatic{
     usuario:string;
     inicioRun:string;
     nivel:number;
-    dificultad:number;
+    premiosNivel:number;
     tiempo:number;
     salasTotales:number;
     salasCompletadas:number;

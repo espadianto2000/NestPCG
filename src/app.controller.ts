@@ -3,9 +3,12 @@ import { AppService } from './app.service';
 import firebase, { initializeApp } from "firebase/app";
 import "firebase/database";
 import { getDatabase, ref, set } from 'firebase/database';
-import { MuerteUsuario } from './models/muerteUsuario';
-import { SalaCompletada } from './models/salaCompletada';
-import { NivelCompletado } from './models/nivelCompletado';
+import { MuerteUsuarioAdapt } from './models/muerteUsuarioAdapt';
+import { SalaCompletadaAdapt } from './models/salaCompletadaAdapt';
+import { NivelCompletadoAdapt } from './models/nivelCompletadoAdapt';
+import { muerteUsuarioStatic } from './models/muerteUsuarioStatic';
+import { salaCompletadaStatic } from './models/salaCompletadaStatic';
+import { nivelCompletadoStatic } from './models/nivelCompletadoStatic';
 
 @Controller()
 export class AppController {
@@ -16,8 +19,8 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Post('/muerte')
-  muerte(@Body() body:MuerteUsuario): void {
+  @Post('/muerteAdapt')
+  muerteAdapt(@Body() body:MuerteUsuarioAdapt): void {
     const firebaseConfig = {
       apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
       authDomain: "pcgnest.firebaseapp.com",
@@ -29,11 +32,11 @@ export class AppController {
     };
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    var muerte :MuerteUsuario = body;
+    var muerte :MuerteUsuarioAdapt = body;
     set(ref(database, 'users/'+muerte.usuario+'/'+muerte.inicioRun+'/muerte'), muerte);
   }
-  @Post('/sala')
-  sala(@Body() body:SalaCompletada): void{
+  @Post('/salaAdapt')
+  salaAdapt(@Body() body:SalaCompletadaAdapt): void{
     const firebaseConfig = {
       apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
       authDomain: "pcgnest.firebaseapp.com",
@@ -45,11 +48,11 @@ export class AppController {
     };
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    var salaF :SalaCompletada = body;
+    var salaF :SalaCompletadaAdapt = body;
     set(ref(database, 'users/'+salaF.usuario+'/'+salaF.inicioRun+'/'+salaF.nivel+'/'+Date.now()), salaF);
   }
-  @Post('/nivel')
-  nivel(@Body() body:NivelCompletado): void{
+  @Post('/nivelAdapt')
+  nivelAdapt(@Body() body:NivelCompletadoAdapt): void{
     const firebaseConfig = {
       apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
       authDomain: "pcgnest.firebaseapp.com",
@@ -61,7 +64,56 @@ export class AppController {
     };
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
-    var nivelF :NivelCompletado = body;
+    var nivelF :NivelCompletadoAdapt = body;
     set(ref(database, 'users/'+nivelF.usuario+'/'+nivelF.inicioRun+'/'+nivelF.nivel+'/NivelFinalizado'), nivelF);
   }
+  @Post('/muerteStatic')
+  muerteStatic(@Body() body:muerteUsuarioStatic): void {
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
+      authDomain: "pcgnest.firebaseapp.com",
+      databaseURL: "https://pcgnest-default-rtdb.firebaseio.com",
+      projectId: "pcgnest",
+      storageBucket: "pcgnest.appspot.com",
+      messagingSenderId: "367952707578",
+      appId: "1:367952707578:web:f6a2fdf4e35c9240dbae43"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    var muerte :muerteUsuarioStatic = body;
+    set(ref(database, 'users/'+muerte.usuario+'/'+muerte.inicioRun+'/muerte'), muerte);
+  }
+  @Post('/salaStatic')
+  salaStatic(@Body() body:salaCompletadaStatic): void{
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
+      authDomain: "pcgnest.firebaseapp.com",
+      databaseURL: "https://pcgnest-default-rtdb.firebaseio.com",
+      projectId: "pcgnest",
+      storageBucket: "pcgnest.appspot.com",
+      messagingSenderId: "367952707578",
+      appId: "1:367952707578:web:f6a2fdf4e35c9240dbae43"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    var salaF :salaCompletadaStatic = body;
+    set(ref(database, 'users/'+salaF.usuario+'/'+salaF.inicioRun+'/'+salaF.nivel+'/'+Date.now()), salaF);
+  }
+  @Post('/nivelStatic')
+  nivelStatic(@Body() body:nivelCompletadoStatic): void{
+    const firebaseConfig = {
+      apiKey: "AIzaSyC6xePrFT1bd7fxGspNLSgzFTO44-hYy48",
+      authDomain: "pcgnest.firebaseapp.com",
+      databaseURL: "https://pcgnest-default-rtdb.firebaseio.com",
+      projectId: "pcgnest",
+      storageBucket: "pcgnest.appspot.com",
+      messagingSenderId: "367952707578",
+      appId: "1:367952707578:web:f6a2fdf4e35c9240dbae43"
+    };
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    var nivelF :nivelCompletadoStatic = body;
+    set(ref(database, 'users/'+nivelF.usuario+'/'+nivelF.inicioRun+'/'+nivelF.nivel+'/NivelFinalizado'), nivelF);
+  }
+
 }
