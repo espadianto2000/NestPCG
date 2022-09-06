@@ -16,6 +16,6 @@ export class SalaCompletadaAdapt{
         enem4:number;
     }
     tiempoSala:number;
-    danoRecibidoJefe:number;
+    danoRecibidoTotal:number;
     salaJefe:boolean;
 }

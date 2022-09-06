@@ -3,7 +3,6 @@ export class salaCompletadaStatic{
     inicioRun:string;
     nivel:number;
     tiempoSala:number;
-    danoRecibidoJefe:number;
+    danoRecibidoTotal:number;
     salaJefe:boolean;
-    danoRecibido:number;
 }
